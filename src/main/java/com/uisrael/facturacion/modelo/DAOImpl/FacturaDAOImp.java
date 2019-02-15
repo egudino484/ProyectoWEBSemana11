@@ -7,6 +7,8 @@ package com.uisrael.facturacion.modelo.DAOImpl;
 
 import com.uisrael.facturacion.modelo.DAO.IFacturaDAO;
 import com.uisrael.facturacion.modelo.entidades.Factura;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Tuple;
@@ -40,6 +42,8 @@ public class FacturaDAOImp extends GenericDAO<Factura> implements IFacturaDAO {
         return lista;
     }
 
+    
+
     public List<Factura> listarFacturaCQ() {
         CriteriaBuilder cb = this.entityManager.getCriteriaBuilder();
         CriteriaQuery<Factura> f = cb.createQuery(Factura.class);
@@ -59,6 +63,30 @@ public class FacturaDAOImp extends GenericDAO<Factura> implements IFacturaDAO {
     public List<Factura> listarFacturaTQ() {
         TypedQuery<Factura> tq = entityManager.createQuery("Select f from Factura f order by f.cliente.apellido ", Factura.class);
         return tq.getResultList();
+    }
+
+    public List<Factura> listarFacturasBimestral() {
+        List<Factura> lista;
+        List<Factura> listaFiltrada = new ArrayList<>();
+        int mesInicial = 1;//enero
+        int mesFinal = 2;//febrero
+        try {
+            lista = entityManager.createQuery("SELECT f Factura f ", Factura.class).getResultList();
+            Calendar cal = Calendar.getInstance();
+            for (int i = 0; i < lista.size(); i++) {
+                cal.setTime(lista.get(i).getFecha());
+                int month = cal.get(Calendar.MONTH);
+                if (month <= mesFinal && month >= mesInicial) {
+                    listaFiltrada.add(lista.get(i));
+                }
+            }
+
+            return listaFiltrada;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+
+        }
     }
 
     @Override

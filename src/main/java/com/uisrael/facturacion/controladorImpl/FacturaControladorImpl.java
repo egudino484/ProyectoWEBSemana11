@@ -69,6 +69,16 @@ public class FacturaControladorImpl implements IFacturaControlador {
             return null;
         }
      }
+      public List<Factura> listarFacturasBimestral() {
+          try {
+            FacturaDAOImp sqltq = new FacturaDAOImp(Factura.class);
+            return sqltq.listarFacturasBimestral();
+        } catch (Exception e) {
+            System.err.println("ERROR:" + e);
+            return null;
+        }
+     }
+     
 
     @Override
     public boolean actualizarFactura(Factura factura) throws Exception {

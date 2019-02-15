@@ -7,7 +7,8 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -31,6 +32,43 @@ and open the template in the editor.
                 </p:panel>
             </h:form>
         </div>
+        <hr/>
+        <p:panel header="listar" style="">
+
+            <h:panelGrid>
+                <p:dataTable id="listaCliente" value="#{facturaView.listarFacturasBimestral()}"  var="dtCliente" widgetVar="listaCliente" rows="25" paginatorPosition="bottom" paginator="true" scrollable="true" scrollHeight="200">
+                    <p:column headerText="Id">
+                        <h:outputText id="txtid" value="#{dtCliente.idFactura}" />
+                    </p:column>
+
+                    <p:column headerText="Numero">
+                        <h:outputText id="txtNombre" value="#{dtCliente.numero}" />
+                    </p:column>
+
+                    <p:column headerText="Fecha">
+                        <h:outputText id="txtApellido" value="#{dtCliente.fecha}" />
+                    </p:column>
+
+                    <p:column headerText="Estado">
+                        <h:outputText id="txtDireccion" value="#{dtCliente.estado}" />
+                    </p:column>      
+                    <p:column headerText="Cliente">
+                        <h:outputText id="txtDireccion" value="#{dtCliente.cliente.nombre}" />
+                    </p:column>    
+                    <p:column headerText="Cliente">
+                        <h:outputText id="txtDireccion" value="#{dtCliente.empleado.nombre}" />
+                    </p:column>    
+
+
+                </p:dataTable> 
+
+            </h:panelGrid>
+
+
+
+
+
+        </p:panel>
     </body>
 </html>
 
