@@ -79,7 +79,7 @@ public class FacturaDAOImp extends GenericDAO<Factura> implements IFacturaDAO {
                     listaFiltrada.add(lista.get(i));
                 } 
             }
-            entityManager.close();
+            //entityManager.close();
             return listaFiltrada;
         } catch (Exception e) {
             e.printStackTrace();
