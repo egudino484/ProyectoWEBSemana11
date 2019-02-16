@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.uisrael.facturacion.modelo.entidades;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,8 +25,9 @@ import javax.persistence.TemporalType;
  * @author Edison Gómez
  */
 @Entity
-@Table(name="factura")
+@Table(name = "factura")
 public class Factura implements Serializable {
+
     @Id
     private int idFactura;
     private int numero;
@@ -33,19 +35,19 @@ public class Factura implements Serializable {
     private Date fecha;
     private int estado;
     
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name="idCliente")
+    private double total;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idCliente")
     private Cliente cliente;
-    
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name="idEmpleado")
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idEmpleado")
     private Empleado empleado;
-    
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "Factura")
-    private List<Detalle> detalle = new  ArrayList<>();
-    
-    
-    public Factura(){
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Factura")
+    private List<Detalle> detalle = new ArrayList<>();
+
+    public Factura() {
     }
 
     public Factura(int idFactura, int numero, Date fecha, int estado, Cliente cliente, Empleado empleado) {
@@ -75,6 +77,14 @@ public class Factura implements Serializable {
 
     public Date getFecha() {
         return fecha;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public void setFecha(Date fecha) {

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Consulta Facturas</title>
+    </h:head>
+    <body>
+        <div>
+            <h:form id="frmCliente" style="background-color:aqua ">
+
+
+                <p:panel header="listar" style="">
+
+                    <h:panelGrid>
+                        <p:dataTable id="listaCliente" value="#{facturaView.listarFacturasBimestral()}"  var="dtCliente" widgetVar="listaCliente" rows="25" paginatorPosition="bottom" paginator="true" scrollable="true" scrollHeight="200">
+                            <p:column headerText="Codigo">
+                                <h:outputText id="codigofactura" value="#{dtCliente.idFactura}" />
+                            </p:column>
+
+                            <p:column headerText="Fecha">
+                                <h:outputText id="fecha" value="#{dtCliente.fecha}" />
+                            </p:column>
+                            <p:column headerText="Nombre cliente">
+                                <h:outputText id="nombrecliente" value="#{dtCliente.cliente.nombre}" />
+                            </p:column>
+                            <p:column headerText="Nombre empleado">
+                                <h:outputText id="nombrempleado" value="#{dtCliente.empleado.nombre}" />
+                            </p:column>
+                            
+                            <p:column headerText="Total">
+                                <h:outputText id="toal" value="#{dtCliente.total}" />
+                            </p:column>
+
+
+
+                        </p:dataTable> 
+
+                    </h:panelGrid>
+
+
+
+
+
+                </p:panel>
+
+
+            </h:form>
+            <hr/>
+            <!--   <p:dialog header="Car Detail" widgetVar="carDialog" resizable="false"  
+                         width="200" showEffect="explode" hideEffect="explode">  -->
+
+            <!--</p:dialog>  -->
+            <hr/>
+
+
+        </div>
+    </body>
+</html>

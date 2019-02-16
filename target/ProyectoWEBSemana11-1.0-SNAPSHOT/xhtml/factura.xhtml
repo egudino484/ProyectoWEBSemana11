@@ -8,7 +8,9 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
     <head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -33,31 +35,31 @@ and open the template in the editor.
             </h:form>
         </div>
         <hr/>
-        <h2>Listar Facturas  Primer Bimestre</h2
+        <h2>Listar Facturas  Primer Bimestre</h2>
         <p:panel header="listar" style="">
 
             <h:panelGrid>
                 <p:dataTable id="listaCliente" value="#{facturaView.listarFacturasBimestral()}"  var="dtCliente" widgetVar="listaCliente" rows="25" paginatorPosition="bottom" paginator="true" scrollable="true" scrollHeight="200">
                     <p:column headerText="Id">
-                        <h:outputText id="txtid" value="#{dtCliente.idFactura}" />
+                        <h:outputText id="txtid1" value="#{dtCliente.idFactura}" />
                     </p:column>
 
                     <p:column headerText="Numero">
-                        <h:outputText id="txtNombre" value="#{dtCliente.numero}" />
+                        <h:outputText id="txtNombre1" value="#{dtCliente.numero}" />
                     </p:column>
 
                     <p:column headerText="Fecha">
-                        <h:outputText id="txtApellido" value="#{dtCliente.fecha}" />
+                        <h:outputText id="txtApellido1" value="#{dtCliente.fecha}" />
                     </p:column>
 
                     <p:column headerText="Estado">
-                        <h:outputText id="txtDireccion" value="#{dtCliente.estado}" />
+                        <h:outputText id="txtDireccion1" value="#{dtCliente.estado}" />
                     </p:column>      
                     <p:column headerText="Cliente">
-                        <h:outputText id="txtDireccion" value="#{dtCliente.cliente.nombre}" />
+                        <h:outputText id="nombrecliente" value="#{dtCliente.cliente.nombre}" />
                     </p:column>    
                     <p:column headerText="Cliente">
-                        <h:outputText id="txtDireccion" value="#{dtCliente.empleado.nombre}" />
+                        <h:outputText id="nombreempleado" value="#{dtCliente.empleado.nombre}" />
                     </p:column>    
 
 

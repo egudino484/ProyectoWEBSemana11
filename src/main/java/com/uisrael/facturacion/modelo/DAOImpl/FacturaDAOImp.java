@@ -42,8 +42,6 @@ public class FacturaDAOImp extends GenericDAO<Factura> implements IFacturaDAO {
         return lista;
     }
 
-    
-
     public List<Factura> listarFacturaCQ() {
         CriteriaBuilder cb = this.entityManager.getCriteriaBuilder();
         CriteriaQuery<Factura> f = cb.createQuery(Factura.class);
@@ -71,16 +69,17 @@ public class FacturaDAOImp extends GenericDAO<Factura> implements IFacturaDAO {
         int mesInicial = 1;//enero
         int mesFinal = 2;//febrero
         try {
-            lista = entityManager.createQuery("SELECT f Factura f ", Factura.class).getResultList();
+            lista = entityManager.createQuery("SELECT f FROM  Factura f ", Factura.class).getResultList();
             Calendar cal = Calendar.getInstance();
             for (int i = 0; i < lista.size(); i++) {
                 cal.setTime(lista.get(i).getFecha());
-                int month = cal.get(Calendar.MONTH);
+                int month = cal.get(Calendar.MONTH) + 1;// se le suma uno ya que devuelde 0-> enero 1->febrero... 11->diciembre
+                System.out.println("Mes factura : " + month + " inicio:" + mesInicial + " fin:" + mesFinal);
                 if (month <= mesFinal && month >= mesInicial) {
                     listaFiltrada.add(lista.get(i));
-                }
+                } 
             }
-
+            entityManager.close();
             return listaFiltrada;
         } catch (Exception e) {
             e.printStackTrace();
